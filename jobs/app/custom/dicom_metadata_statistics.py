@@ -1,3 +1,4 @@
+import argparse
 import os
 from typing import Dict, List
 
@@ -6,6 +7,7 @@ from nvflare.app_common.abstract.statistics_spec import Statistics, Histogram, F
 import pandas as pd
 import pydicom
 from dicom_tag import DicomTag
+
 
 class DicomMetadataStatistics(Statistics):
 
@@ -63,5 +65,9 @@ class DicomMetadataStatistics(Statistics):
     def min_value(self, dataset_name: str, feature_name: str) -> float:
         pass
 
-stats = DicomMetadataStatistics()
+parser = argparse.ArgumentParser(description='Process input parameters')
+parser.add_argument('--datadir', required=False, help='Path to directory with datasets'
+                                                      ' (if single folder with data needs to be analyzed)')
+args = parser.parse_args()
+stats = DicomMetadataStatistics(args.datadir)
 stats.initialize()
