@@ -23,6 +23,8 @@ class DicomMetadataStatistics(Statistics):
     def load_distinct_patients(self, fl_ctx: FLContext = None) -> Dict[str, pd.DataFrame]:
         for file in self.get_files_in_directory():
             dicom_file = pydicom.dcmread(file, specific_tags=[DicomTag.PatientSex.value, DicomTag.StudyInstanceUID.value])
+            print("Dicom file: " + file)
+            print(dicom_file[DicomTag.StudyInstanceUID.value])
             matching_study_list = [d for d in self.data if
                                    d[DicomTag.StudyInstanceUID.value] == dicom_file.StudyInstanceUID]
             if len(matching_study_list) == 0:
