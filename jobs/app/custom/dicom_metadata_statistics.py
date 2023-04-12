@@ -7,7 +7,7 @@ from nvflare.app_common.abstract.statistics_spec import Statistics, Histogram, F
 import pandas as pd
 import pydicom
 from dicom_tag import DicomTag
-
+from pathlib import Path
 
 class DicomMetadataStatistics(Statistics):
 
@@ -71,6 +71,9 @@ class DicomMetadataStatistics(Statistics):
 parser = argparse.ArgumentParser(description='Process input parameters')
 parser.add_argument('--datadir', required=False, help='Path to directory with datasets'
                                                       ' (if single folder with data needs to be analyzed)')
+
 args = parser.parse_args()
+print("File      Path:", Path(__file__).absolute())
+print("Directory Path:", Path().absolute())
 stats = DicomMetadataStatistics(args.datadir)
 stats.initialize()
