@@ -32,6 +32,7 @@ class DicomMetadataStatistics(Statistics):
 
     def get_files_in_directory(self):
         file_list = []
+        print("Getting all files in: " + self.data_dir)
         for dir_path, dir_names, file_names in os.walk(self.data_dir):
             for filename in file_names:
                 file_list.append(os.path.join(dir_path, filename))
